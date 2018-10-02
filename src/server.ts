@@ -6,8 +6,8 @@ import { readFileSync } from 'fs';
 import app from './app';
 
 const options = {
-    key: 'PATH_TO_PRIVATE_KEY',
-    cert: 'PATH_TO_CERTIFICATE',
+    key: readFileSync('certs/privatekey.pem'),
+    cert: readFileSync('certs/certificate.pem'),
 };
 
 https.createServer(options, app).listen(app.get('port'), () => {
