@@ -1,0 +1,47 @@
+{
+  "name": "oauth-consumer-backend",
+  "version": "0.1.0",
+  "description": "An example of OAuth2 consumer using authorization-server API (Backend).",
+  "main": "index.js",
+  "scripts": {
+    "init": "npm run gen-env && npm run gen-certs",
+    "start": "npm run build && npm run serve",
+    "serve": "node dist/server.js",
+    "build": "tsc",
+    "gen-certs": "node ./scripts/generateCerts.js",
+    "gen-env": "node ./scripts/generateEnv.js",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "tslint": "./node_modules/.bin/tslint",
+    "tsc": "./node_moduels/.bin/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakedmanes/oauth-consumer-backend.git"
+  },
+  "author": "Shaked Manes & Michael T",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shakedmanes/oauth-consumer-backend/issues"
+  },
+  "homepage": "https://github.com/shakedmanes/oauth-consumer-backend#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/morgan": "^1.7.35",
+    "shelljs": "^0.8.2",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "typescript": "^3.1.1"
+  }
+}
