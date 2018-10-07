@@ -7,4 +7,4 @@ function generateEnvFile(port, nodeEnv) {
   fs.writeFileSync('.env', `PORT=${port}\r\nNODE_ENV=${nodeEnv}`);
 }
 
-generateEnvFile(3000, 'dev');
+generateEnvFile(5000, 'dev');
