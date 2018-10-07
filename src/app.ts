@@ -1,5 +1,6 @@
 // app
 
+import axios from 'axios';
 import express, { Request, Response, NextFunction } from 'express';
 import { default as session } from 'express-session';
 import morgan from 'morgan';
@@ -7,11 +8,13 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import { config } from './config';
 import { default as OAuthRoutes } from './oauth/oauth.routes';
-import { default as UserRoutes } from './user/user.routes';
 import { AuthError } from './error/error.types';
 
 // Load enviroment variables from .env file
 dotenv.config();
+
+// Axios global configuration
+axios.defaults.baseURL = config.axios.baseURL;
 
 const app = express();
 app.set('port', process.env.PORT);
@@ -37,7 +40,6 @@ app.use(session({
 
 // Routes
 app.use('/oauth', OAuthRoutes);
-app.use('/api', UserRoutes);
 
 // Error handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

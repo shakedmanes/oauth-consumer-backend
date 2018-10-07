@@ -9,9 +9,9 @@ export const config = {
   // OAuth configuration
   clientCredentials: {
     client: {
-      id: '0BfSsUy~eGcPh_s6YgwEq7WDMZQkGloImx92zIxv',
+      id: '9w~vzkjSDKmoMlI5GI0yg9UjJ~OW8ESOGOoCOMvT',
       // tslint:disable-next-line:max-line-length
-      secret: 'rgXjVleVkg8ahyt6qxO1k4yQfSkvoYDQV583zDDSWIklC9VmJhGICMiYk1QCqslf17W_aHPABVVHjUA_F~bkHGtnBDcVAB_9MKum',
+      secret: 'nBdkjtWRg5L7a5WBzGCvO~9y8~0iul9B57mG81ps7aB5sh2L0wdHivO09fRbptZTC0AS1WtO0LqeqhnptVH7HJGduXN6wG5QathO',
     },
     auth: {
       tokenHost: 'https://localhost:1337',
@@ -31,6 +31,10 @@ export const config = {
       scope: 'profile', // The scopes required for the token
       state: stateGenerator(),
     };
+  },
+
+  axios: {
+    baseURL: 'https://localhost:1337',
   },
 
 };
