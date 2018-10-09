@@ -35,7 +35,8 @@ oauthRouter.get('/callback', async (req, res) => {
 
     return res.status(200).send({ auth: true });
   } catch (err) {
-    return res.status(err.status || 500).send(err.message || 'Authentication Error');
+    return res.status(err.output.statusCode || 500)
+              .send(err.data.payload.message || 'Authentication Error');
   }
 });
 
