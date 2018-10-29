@@ -31,9 +31,11 @@ oauthRouter.get('/callback', async (req, res) => {
     // Associate the token withing the session instance
     if (req.session) {
       req.session.token = accessToken;
+      req.session.save(() => {
+        console.log('saved successfuly');
+        return res.status(200).send({ auth: true });
+      });
     }
-
-    return res.status(200).send({ auth: true });
   } catch (err) {
     return res.status(err.output.statusCode || 500)
               .send(err.data.payload.message || 'Authentication Error');
@@ -55,6 +57,16 @@ oauthRouter.get('/tokeninfo', async (req, res) => {
     );
 
   if (response.status === 200) {
+    if (!response.data.active) {
+      if (req.session) {
+        req.session.destroy((err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      }
+      return res.redirect('/oauth/auth');
+    }
     return res.status(200).send(response.data);
   }
 

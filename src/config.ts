@@ -9,9 +9,9 @@ export const config = {
   // OAuth configuration
   clientCredentials: {
     client: {
-      id: '9w~vzkjSDKmoMlI5GI0yg9UjJ~OW8ESOGOoCOMvT',
+      id: 'svs1J2pWq5RnWi7DzHsDE0aLh~aT_h2rNpZg_yGZ',
       // tslint:disable-next-line:max-line-length
-      secret: 'nBdkjtWRg5L7a5WBzGCvO~9y8~0iul9B57mG81ps7aB5sh2L0wdHivO09fRbptZTC0AS1WtO0LqeqhnptVH7HJGduXN6wG5QathO',
+      secret: 'PlA76OG7_gdGgJXiBnhGsCgIV5pbySmaeYUF3swP~OFG_B~xpTiHILd1DxSyQ_np42Z98Txv~gWe5BFhYE9~BkG8lqeArARzEiiX',
     },
     auth: {
       tokenHost: 'https://localhost:1337',
@@ -19,6 +19,19 @@ export const config = {
       revokePath: '/oauth2/token',
       tokenPath: '/oauth2/token',
     },
+  },
+
+  // Third party api configuration
+
+  apiRequests: {
+    apiBaseURL: 'https://localhost:6000',
+    apiResourcesRoute: '/resources/files',
+  },
+
+   // Token configuration used for OAuth2 Client Credentials flow
+  tokenConfig: {
+    scope: 'read',
+    audience: 'https://localhost:1337', // audience of the access token (resource server)
   },
 
   redirectUri: {
@@ -30,6 +43,7 @@ export const config = {
       ...this.redirectUri,
       scope: 'profile', // The scopes required for the token
       state: stateGenerator(),
+      audience: this.apiRequests.apiBaseURL,
     };
   },
 
