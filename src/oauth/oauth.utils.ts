@@ -5,7 +5,7 @@ import { config } from '../config';
 
 // TODO: Need to add the server token somehow in the authroization server api requests
 
-export class OAuth2Controller {
+export class OAuthUtils {
 
   // OAuth2 configured root flow with Client Credentials options
   static oauth2Flow = create(config.clientCredentials);
@@ -14,7 +14,7 @@ export class OAuth2Controller {
   // Should be wrapped via accessToken.create for parsing the
   // response from the authorization server
   static clientCredentialsFlow =
-    OAuth2Controller.oauth2Flow.clientCredentials.getToken.bind({}, config.tokenConfig);
+    OAuthUtils.oauth2Flow.clientCredentials.getToken.bind({}, config.tokenConfig);
 
   // Contains the Access Token
   static accessToken: AccessToken | null = null;
@@ -25,20 +25,20 @@ export class OAuth2Controller {
   static async getToken() {
     try {
       // If there's already an access token, need to check it's validity
-      if (OAuth2Controller.accessToken) {
+      if (OAuthUtils.accessToken) {
 
         // Check if access token expired
-        if (!OAuth2Controller.accessToken.expired()) {
-          return OAuth2Controller.accessToken.token.access_token;
+        if (!OAuthUtils.accessToken.expired()) {
+          return OAuthUtils.accessToken.token.access_token;
         }
       }
 
       // All other cases require creating new access token
-      const result = await OAuth2Controller.clientCredentialsFlow();
+      const result = await OAuthUtils.clientCredentialsFlow();
 
-      OAuth2Controller.accessToken = OAuth2Controller.oauth2Flow.accessToken.create(result);
+      OAuthUtils.accessToken = OAuthUtils.oauth2Flow.accessToken.create(result);
 
-      return OAuth2Controller.accessToken.token.access_token;
+      return OAuthUtils.accessToken.token.access_token;
     } catch (err) {
       throw err;
     }

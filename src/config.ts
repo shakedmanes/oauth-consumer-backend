@@ -31,7 +31,7 @@ export const config = {
    // Token configuration used for OAuth2 Client Credentials flow
   tokenConfig: {
     scope: 'read',
-    audience: 'https://localhost:1337', // audience of the access token (resource server)
+    audience: 'https://localhost:6000', // audience of the access token (resource server)
   },
 
   redirectUri: {
